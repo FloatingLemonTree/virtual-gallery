@@ -1,0 +1,18 @@
+{
+    "extends": ["next/core-web-vitals", "prettier"],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error",           // Ошибки Prettier = ошибки ESLint
+        "no-unused-vars": "warn",               // Неиспользуемые переменные — предупреждение
+        "no-console": "warn",                   // console.log — предупреждение (оставить для отладки)
+        "eqeqeq": ["error", "always"],          // Всегда использовать === и !==
+        "curly": "error",                       // Всегда использовать фигурные скобки в if/else/for
+        "no-var": "error",                      // Запретить var, только let/const
+        "prefer-const": "error",                // Предпочитать const, если переменная не изменяется
+        "arrow-body-style": ["error", "as-needed"], // Короткие стрелочные функции без {}
+        "object-shorthand": ["error", "always"],    // Короткая запись свойств объектов
+        "no-multiple-empty-lines": ["error", { "max": 1 }], // Не больше одной пустой строки подряд
+        "react/jsx-uses-react": "off",          // Не нужен с React 17+
+        "react/react-in-jsx-scope": "off"       // Не нужен с React 17+
+    }
+}

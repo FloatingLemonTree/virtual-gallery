@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String   @unique
+  password     String
+  role         String
+  createdAt    DateTime @default(now())
+}
+
+model Exhibition {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  authorId    String   @db.ObjectId
+  createdAt   DateTime @default(now())
+}
+
+model Exhibit {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  imageUrl     String
+  position     Float[]
+  exhibitionId String   @db.ObjectId
+  authorId     String   @db.ObjectId
+  createdAt    DateTime @default(now())
+}
+
+model Comment {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  text         String
+  userId       String   @db.ObjectId
+  exhibitId    String   @db.ObjectId
+  exhibitionId String   @db.ObjectId
+  createdAt    DateTime @default(now())
+}
+
+model ChatMessage {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  text           String
+  userId         String   @db.ObjectId
+  exhibitionId   String   @db.ObjectId
+  createdAt      DateTime @default(now())
+  isFromCurator  Boolean
+}
